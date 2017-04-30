@@ -37,6 +37,24 @@ def get_authors(commits):
             authors[author] = authors[author] + 1
     return authors
 
+def get_number_of_1_comment_lines(commits):
+    comment_lines_1 = 0
+    for commit in commits:
+        if commit['number_of_lines'] == "1":
+            comment_lines_1 = comment_lines_1 + 1
+        else:
+            continue
+    return comment_lines_1
+
+def get_number_of_4_comment_lines(commits):
+    comment_lines_4 = 0
+    for commit in commits:
+        if commit['number_of_lines'] == "5":
+            comment_lines_4 = comment_lines_4 + 1
+        else:
+            continue
+    return comment_lines_4
+
 if __name__ == '__main__':
     # open the file - and read all of the lines.
     changes_file = 'changes_python.txt'
