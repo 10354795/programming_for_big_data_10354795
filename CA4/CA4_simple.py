@@ -82,7 +82,7 @@ if __name__ == '__main__':
     data = read_file(changes_file)          # This reads the information into a variable called data in meomory
     commits = get_commits(data)             # call the funtion to strip the data.
 
-# Save data in the commits list to a CSV file for furtehr processing.
+# Save data in the commits list to a CSV file for further processing.
 
     output = open("CA4_out.csv", 'w')
     index = 0
