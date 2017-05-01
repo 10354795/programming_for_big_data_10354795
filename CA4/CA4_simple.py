@@ -81,7 +81,28 @@ if __name__ == '__main__':
     changes_file = 'changes_python.txt'     # open the file and read all of the lines.
     data = read_file(changes_file)          # This reads the information into a variable called data in meomory
     commits = get_commits(data)             # call the funtion to strip the data.
+
+# Save data in the commits list to a CSV file for furtehr processing.
+
+    output = open("CA4_out.csv", 'w')
+    index = 0
+    for commit in commits:
+        output.write(commits[index]['author'])        
+        output.write(';')
+        output.write(commits[index]['revision'])
+        output.write(';')
+        output.write(commits[index]['date'])
+        output.write(';')
+        output.write(commits[index]['number_of_lines'])
+        output.write(';')
+#        output.write(commits[index]['comment'])
+        output.write(';')
+#        output.write(commits[index]['change'])
+        output.write('\n')
+        index = index +1
+    output.close()
     
+                      
     print("")
     print("Below is the total number of lines in the log file and the number of helpdesk calls(commits)")
     print(len(data))        # print the number of lines read from the log file changes_python.txt
@@ -92,5 +113,4 @@ if __name__ == '__main__':
     print("Below is a list of the help desk agents (authors) and the number of calls that they handle.")
     print (get_authors(commits))
 
-#    print(commits[2]['author'])
-#    print(commits)
+#    print(commits[0]['comment'])
