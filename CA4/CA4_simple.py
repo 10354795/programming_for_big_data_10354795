@@ -95,30 +95,14 @@ if __name__ == '__main__':
         output.write(';')
         output.write(commits[index]['number_of_lines'])
         output.write(';')
-#        output.write(commits[index]['comment'])        # Commented out as cause and error
+        output.write(str(commits[index]['comment']))  
         output.write(';')
-#        output.write(commits[index]['change'])        # Commented out as cause and error
+        output.write(str(commits[index]['changes']))
         output.write('\n')
         index = index +1
     output.close()
     
-
-# print comments to command line. Commented out as very long
-
-#    index = 0
-#    for commit in commits:
-#        print(commits[index]['comment'])
-#        index = index +1
-#        
-#   print changes to command line. Commented out as very long
-#
-#    index = 0
-#    for commit in commits:
-#        print(commits[index]['changes'])
-#        index = index +1
-     
-    
-                      
+                 
     print("")
     print("Below is the total number of lines in the log file and the number of helpdesk calls(commits)")
     print(len(data))        # print the number of lines read from the log file changes_python.txt

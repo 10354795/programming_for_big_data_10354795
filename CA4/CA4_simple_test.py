@@ -1,6 +1,6 @@
 # Thomas O'Brien ID 10354795
 
-# Program to test the program that extracts data from a log of support calls.
+# Program to test the funtions that extracts data from a log file of support calls.
 
 
 import unittest
