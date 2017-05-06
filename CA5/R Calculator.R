@@ -52,7 +52,7 @@ cosine <- function(x) {
 }
 
 
-# Ask the user to input choice
+# Print options and ask the user to input choice
 
 print("Please select the funtion you wish to perform.")
 print(" 1.Add")
@@ -68,3 +68,4 @@ print("10.Cosine")
 
 
 choice = as.integer(readline(prompt="Enter choice[1/2/3/4/5/6/7/8/9/10]: "))
+
