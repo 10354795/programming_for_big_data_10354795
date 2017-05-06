@@ -84,3 +84,49 @@ if(choice == 4){
   num2 = as.integer(readline(prompt="Enter second number: "))
 }
 
+# Put guard on to protect against divide by zero error when doing calculations.
+
+if(choice == 4)
+{
+  if(num2 == 0)
+  {  
+    print("Divide by zero error")
+  } else {
+    operator <- switch(choice,"+","-","*","/","to the power of","square root","square","cube","sine","cosine","tangent")
+    result <- switch(choice, add(num1, num2), 
+                     subtract(num1, num2), 
+                     multiply(num1, num2), 
+                     divide(num1, num2), 
+                     exponent(num1, num2),
+                     sqr_root(num1),
+                     square(num1),
+                     cube(num1),
+                     sine(num1),
+                     cosine(num1))
+    
+    if(choice <= 5){
+      print(paste(num1, operator, num2, "=", result))
+    } else { 
+      print(paste(operator, num1, "=", result))
+    }
+  }
+} else {
+  operator <- switch(choice,"+","-","*","/","to the power of","square root","square","cube","sine","cosine","tangent")
+  result <- switch(choice, add(num1, num2), 
+                   subtract(num1, num2), 
+                   multiply(num1, num2), 
+                   divide(num1, num2), 
+                   exponent(num1, num2),
+                   sqr_root(num1),
+                   square(num1),
+                   cube(num1),
+                   sine(num1),
+                   cosine(num1))
+  
+  if(choice <= 5){
+    print(paste(num1, operator, num2, "=", result))
+  } else { 
+    print(paste(operator, num1, "=", result))
+  }
+}
+
