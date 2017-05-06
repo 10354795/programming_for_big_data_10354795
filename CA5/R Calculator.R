@@ -2,8 +2,8 @@
 #
 # Create a Calculator program in R to accept input and provide results to user.
 # 
-# The program should perform the following 10 maths functions. 
-# add, subtract, multiply, divide, exponent, square root, square, cube, sine, & cosine.
+# The program should perform the following functions 
+# add, subtract, multiply, divide, exponent, square root, square, cube, sine, cosine, tangent
 
 # Define function to do calculations
 
@@ -51,3 +51,20 @@ cosine <- function(x) {
   return(cos(x*(pi/180)))
 }
 
+
+# Ask the user to input choice
+
+print("Please select the funtion you wish to perform.")
+print(" 1.Add")
+print(" 2.Subtract")
+print(" 3.Multiply")
+print(" 4.Divide")
+print(" 5.Exponent")
+print(" 6.Sqr_Root")
+print(" 7.Square")
+print(" 8.Cube")
+print(" 9.Sine")
+print("10.Cosine")
+
+
+choice = as.integer(readline(prompt="Enter choice[1/2/3/4/5/6/7/8/9/10]: "))
