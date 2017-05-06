@@ -69,3 +69,18 @@ print("10.Cosine")
 
 choice = as.integer(readline(prompt="Enter choice[1/2/3/4/5/6/7/8/9/10]: "))
 
+
+# Ask user to enter first number for calculation.
+
+num1 = as.integer(readline(prompt="Enter first number: "))
+
+# Check to see if two numbers are required to be entered for menu options 1-5 only. 
+# If yes, request user to input a second numbers.
+# Also alert user not to put in zero for division (menu 4)
+
+if(choice == 4){
+  num2 = as.integer(readline(prompt="Enter second number *** not zero *** as division: "))
+} else if(choice <= 5){
+  num2 = as.integer(readline(prompt="Enter second number: "))
+}
+
