@@ -5,6 +5,14 @@
 # The program should perform the following functions 
 # add, subtract, multiply, divide, exponent, square root, square, cube, sine, cosine, tangent
 
+
+# Suppress global warning messages using options(warn=-1) when program is running correctly.
+# Turn on warning messages again at bottom of program.
+
+options(warn=-1)
+
+# ******************************************************************************
+
 # Define function to do calculations
 
 add <- function(x, y) {
@@ -45,7 +53,7 @@ cube <- function(x) {
   return(x*x*x)
 }
 
-# Note: We need to convert degrees to radians before calculating angular values with R.
+# For Trignometrical functions we need to convert degrees to radians before calculating angular values with R.
 # multiply angular values by pi/180 to convert to radions.
 
 
@@ -57,7 +65,7 @@ cosine <- function(x) {
   return(cos(x*(pi/180)))
 }
 
-# Put guard on to protect against Tan errors for 90, 270 etc...
+# Implement guard to protect against Tan errors for 90, 270 etc...
 
 tangent <- function(x) {
   if (x %% 180 == 0){
@@ -69,9 +77,11 @@ tangent <- function(x) {
   }
 }
 
+# ******************************************************************************
+
 # Print options and ask the user to input their choice of calculations.
 
-print("Please select the funtion you wish to perform.")
+print("Please select the function you wish to perform.")
 print(" 1.Add")
 print(" 2.Subtract")
 print(" 3.Multiply")
@@ -86,12 +96,52 @@ print("11.Tangent")
 
 # Capture choice.
 
-choice = as.integer(readline(prompt="Enter choice[1/2/3/4/5/6/7/8/9/10/11]: "))
+# Implement error checking to trap user errors and ask them to re-input their choice.
+
+input_choice <- function()
+{ 
+  n <- readline(prompt="Enter choice[1/2/3/4/5/6/7/8/9/10/11]: ")
+  n <- as.integer(n)
+  if (is.na(n)){
+    n <- input_choice()
+  }
+  if (n < 1){
+    print("Please enter a number between 1 to 11")
+    n <- input_choice()    
+  }
+  if (n > 11){
+    print("Please enter a number between 1 to 11")
+    n <- input_choice()    
+  }  
+  return(n)
+}
 
 
-# Ask user to enter first number for calculation.
+# Call the choice_input function to capture user input from menu.
 
-num1 = as.numeric(readline(prompt="Enter first number: "))
+choice <- input_choice()
+
+# ******************************************************************************
+
+# Ask user to enter first number for calculations.
+
+# Implement error checking to trap users errors and ask users to re-input the 1st number.
+
+input_num1 <- function()
+{ 
+  n <- readline(prompt="Enter first number: ")
+  n <- as.numeric(n)
+  if (is.na(n)){
+    n <- input_num1()
+  }
+  return(n)
+}
+
+# Call the num1_input function to capture users input for num1.
+
+num1 <- input_num1()
+
+# ******************************************************************************
 
 # Check to see if two numbers are required (for menu options 1-5 only). 
 # If yes, ask user to input a second numbers.
@@ -100,16 +150,38 @@ num1 = as.numeric(readline(prompt="Enter first number: "))
 
 # Change number entered to numeric (float) to accommodate floating numbers.
 
-if(choice == 4){
-  num2 = as.numeric(readline(prompt="Enter second number *** not zero if doing division ***: "))
-} else if(choice <= 5){
-  num2 = as.numeric(readline(prompt="Enter second number: "))
+# Implement error checking to trap users errors and ask users to re-input the 2nd number.
+
+input_num2 <- function()
+{
+  if(choice == 4){
+    n <- readline(prompt="Enter second number *** not zero if doing division ***: ")
+    n <- as.numeric(n)
+    if (is.na(n)){
+      n <- input_num2()
+      }
+    return(n)
+  } else if(choice <= 5){
+    n <- readline(prompt="Enter second number: ")
+    n <- as.numeric(n)
+    if (is.na(n)){
+      n <- input_num1()
+    }
+  return(n)
+  }
 }
 
+# Call the num2_input function to capture user input for num2.
+
+num2 <- input_num2()
+
+# ******************************************************************************
 
 # Set up an array to store information about the operators that will be used for calculations .
 
 operator <- switch(choice,"+","-","*","/","to the power of","square root","square","cube","sine","cosine","tangent")
+
+# ******************************************************************************
 
 # Execute calculations
 
@@ -125,6 +197,10 @@ result <- switch(choice, add(num1, num2),
                  cosine(num1),
                  tangent(num1))
 
+# ******************************************************************************
+
+# Print results
+
 # Implement a guard to protect against divide by zero and Tan errors when printing results.
 
 if (result == "Error"){
@@ -135,3 +211,5 @@ if (result == "Error"){
   print(paste("Answer: ", operator, num1, "=", round(result, digits = 4)))
 }
 
+# Below command turns on global warning messages again.
+options(warn=0)
